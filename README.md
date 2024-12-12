@@ -38,3 +38,41 @@ from DataProcess.RawDataProcess import RawDataProcess
 - `hsi_channels`：处理后高光谱图像通道数。  
 - `lidar_channels`：处理后LiDAR数据通道数。
 ```
+```
+### RawDataProcess类
+#### 1. 简介
+**类名**：`RawDataProcess`  
+这是一个原始数据处理类，用于对高光谱图像数据和LiDAR的原始数据进行处理，将高光谱图像数据转化为一个一个的数据块，并封装成数据集，以供使用。
+
+#### 2. 安装或引入
+```python
+from DataProcess.RawDataProcess import RawDataProcess
+```
+
+#### 3. 创建类的实例
+**构造函数**：`__init__(self, patch_size, file_path, hsi_name, lidar_name, ground_truth_name, train_propotion, validate_propotion, PCA, PCA_dim)`  
+**参数说明**：  
+- `patch_size`：表示要切成的数据块的空间尺寸的大小为patch_size*patch_size的大小，这是一个正整数值。
+- `file_path`：表示原始数据的文件路径，如'./trento_data.mat'。
+- `hsi_name`：.mat 文件的数据字典中的键，表示高光谱图像数据。例如，在包含三个键（'HSI'，'LiDAR'，'GT'）的 trento_data.mat 文件中，hsi_name 的值应设置为 'HSI'。
+- `lidar_name`：.mat 文件的数据字典中的键，表示 LiDAR 数据。例如，在包含三个键（'HSI'，'LiDAR'，'GT'）的 trento_data.mat 文件中，lidar_name 的值应设置为 'LiDAR'。
+- `ground_truth_name`：.mat 文件的数据字典中的键，表示地面真值图像的数据。例如，在包含三个键（'HSI'，'LiDAR'，'GT'）的 trento_data.mat 文件中，ground_truth_name 的值应设置为 'GT'。
+- `train_propotion`：表示训练集中每一个类别的样本的数量，这是一个列表，其中每一个值都为正整数。
+- `validate_propotion`：表示验证集中每一个类别的样本的数量，这是一个列表，其中每一个值都为正整数，注：测试集是通过train_propotion和validate_propotion以及原始数据中的样本数量计算出来的。
+- `PCA`：表示高光谱图像原始数据是否进行PCA。
+- `PCA_dim`：表示高光谱图像原始数据经过PCA之后的维度。
+#### 4. 类的可类外调用的方法
+##### 方法 1：`data_process(self)`  
+**功能**：处理并返回高光谱图像数据、LiDAR数据和地面真值图像的数据集。   
+**返回值**：  
+- `train_dataset`：训练数据集。  
+- `validate_dataset`：验证数据集。  
+- `test_dataset`：测试数据集。  
+- `no_class_dataset`：无真实标签的数据集。  
+- `whole_graph`：包含整个数据图所有像素点的以其为中心的数据块。  
+- `index`：数据索引。（我在使用的时候没有用到）  
+- `class_num`：类别数量。  
+- `hsi_channels`：处理后高光谱图像通道数。  
+- `lidar_channels`：处理后LiDAR数据通道数。
+```
+
