@@ -80,18 +80,19 @@ from ModelOperator.ModelOperator import ModelOperator
 ##### 方法 1：`train_my_model(self, model, train, optimizer, class_num, device, no_class, epoch)`  
 **功能**：处理并返回高光谱图像数据、LiDAR数据和地面真值图像的数据集。   
 **参数说明**：  
-- `confusion_matrix`：模型结果数据的混淆矩阵。  
+- `model`：模型。
+- `train`：训练集。
+- `optimizer`：优化器。
+- `class_num`：类别数量。
+- `device`：设备。
+- `no_class`：没有用，先忽略，后续会进行修改。
+- `epoch`：表示这是第几个epoch。
 **返回值**：  
-- `formatted_each_class_acc`：每一个类别的精度，是一个列表。  
-- `formatted_OA`：总体精度。  
-- `formatted_AA`：平均精度。  
-- `formatted_K`：卡帕系数。
-  ##### 方法 1：`compute(self, confusion_matrix)`  
-**功能**：处理并返回高光谱图像数据、LiDAR数据和地面真值图像的数据集。   
-**参数说明**：  
-- `confusion_matrix`：模型结果数据的混淆矩阵。  
-**返回值**：  
-- `formatted_each_class_acc`：每一个类别的精度，是一个列表。  
-- `formatted_OA`：总体精度。  
-- `formatted_AA`：平均精度。  
-- `formatted_K`：卡帕系数。  
+- `train_acc`：训练精度。  
+- `all_loss_train`：损失值。  
+- `confusion_matrix`：模型对于训练集中所有样本的输出的混淆矩阵。  
+##### 方法 2：`validate_my_model(self, model, validate, class_num, validate_acc_list, count,device)`
+类似于方法 1：`train_my_model(self, model, train, optimizer, class_num, device, no_class, epoch)`  
+##### 方法 2：`test_my_model(self, model, test, class_num, device)`  
+类似于方法 1：`train_my_model(self, model, train, optimizer, class_num, device, no_class, epoch)`  
+
