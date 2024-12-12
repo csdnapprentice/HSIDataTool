@@ -3,20 +3,27 @@
 This is a code repository designed for the complete workflow of hyperspectral image data processing. It provides code for data preprocessing, intermediate training processes, and post-training plotting. These codes can meet basic requirements. If you wish to use them, please credit the original author. I hope this code will be helpful to you.
 ## 使用方法
 ### RawDataProcess类
-**类名**：`User`  
-这是一个用户类，用于管理用户的基本信息和行为，例如注册、登录、更新信息等。
+#### 1. 简介
+**类名**：`RawDataProcess`  
+这是一个原始数据处理类，用于对高光谱图像数据和LiDAR的原始数据进行处理，将高光谱图像数据转化为一个一个的数据块，并封装成数据集，以供使用。
 
 #### 2. 安装或引入
 ```python
-# 假设你的类定义在 user.py 文件中
-from user import User
+from DataProcess.RawDataProcess import RawDataProcess
 ```
 
 #### 3. 创建类的实例
-**构造函数**：`__init__(self, username: str, email: str)`  
+**构造函数**：`__init__(self, patch_size, file_path, hsi_name, lidar_name, ground_truth_name, train_propotion, validate_propotion, PCA, PCA_dim)`  
 **参数说明**：  
-- `username`：用户的用户名，字符串类型。
-- `email`：用户的电子邮件，字符串类型。
+- `patch_size`：表示要切成的数据块的空间尺寸的大小为patch_size*patch_size的大小，这是一个正整数值。
+- `file_path`：表示原始数据的文件路径，如'./trento_data.mat'。
+- `hsi_name`：.mat 文件的数据字典中的键，表示高光谱图像数据。例如，在包含三个键（'HSI'，'LiDAR'，'GT'）的 trento_data.mat 文件中，hsi_name 的值应设置为 'HSI'。
+- `lidar_name`：.mat 文件的数据字典中的键，表示 LiDAR 数据。例如，在包含三个键（'HSI'，'LiDAR'，'GT'）的 trento_data.mat 文件中，lidar_name 的值应设置为 'LiDAR'。
+- `ground_truth_name`：.mat 文件的数据字典中的键，表示地面真值图像的数据。例如，在包含三个键（'HSI'，'LiDAR'，'GT'）的 trento_data.mat 文件中，ground_truth_name 的值应设置为 'GT'。
+- `train_propotion`：表示训练集中每一个类别的样本的数量，这是一个列表，其中每一个值都为正整数。
+- `validate_propotion`：表示验证集中每一个类别的样本的数量，这是一个列表，其中每一个值都为正整数，注：测试集是通过train_propotion和validate_propotion以及原始数据中的样本数量计算出来的。
+- `PCA`：表示高光谱图像原始数据是否进行PCA。
+- `PCA_dim`：表示高光谱图像原始数据经过PCA之后的维度。
 
 **示例**：
 ```python
