@@ -54,6 +54,39 @@ from DataProcess.ResultProcess import ResultProcess
 无参构造函数
 #### 4. 类的可类外调用的方法
 ##### 方法 1：`compute(self, confusion_matrix)`  
+**功能**：处理混淆矩阵并返回各项指标。   
+**参数说明**：  
+- `confusion_matrix`：模型结果数据的混淆矩阵。  
+**返回值**：  
+- `formatted_each_class_acc`：每一个类别的精度，是一个列表。  
+- `formatted_OA`：总体精度。  
+- `formatted_AA`：平均精度。  
+- `formatted_K`：卡帕系数。  
+### ModelOperator类
+#### 1. 简介
+**类名**：`ResultProcess`  
+用于训练模型等各种操作。
+
+#### 2. 安装或引入
+```python
+from ModelOperator.ModelOperator import ModelOperator
+```
+
+#### 3. 创建类的实例
+**构造函数**：`__init__(self)`  
+**参数说明**：  
+无参构造函数
+#### 4. 类的可类外调用的方法
+##### 方法 1：`train_my_model(self, model, train, optimizer, class_num, device, no_class, epoch)`  
+**功能**：处理并返回高光谱图像数据、LiDAR数据和地面真值图像的数据集。   
+**参数说明**：  
+- `confusion_matrix`：模型结果数据的混淆矩阵。  
+**返回值**：  
+- `formatted_each_class_acc`：每一个类别的精度，是一个列表。  
+- `formatted_OA`：总体精度。  
+- `formatted_AA`：平均精度。  
+- `formatted_K`：卡帕系数。
+  ##### 方法 1：`compute(self, confusion_matrix)`  
 **功能**：处理并返回高光谱图像数据、LiDAR数据和地面真值图像的数据集。   
 **参数说明**：  
 - `confusion_matrix`：模型结果数据的混淆矩阵。  
@@ -62,4 +95,3 @@ from DataProcess.ResultProcess import ResultProcess
 - `formatted_OA`：总体精度。  
 - `formatted_AA`：平均精度。  
 - `formatted_K`：卡帕系数。  
-
